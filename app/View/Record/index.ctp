@@ -8,21 +8,37 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach($records as $record):?>
 			<tr>
-				<td><?php echo $record['Record']['id']?></td>
-				<td><?php echo $record['Record']['name']?></td>
-			</tr>	
-			<?php endforeach;?>
+				<td></td>
+				<td></td>
+			</tr>
 		</tbody>
 	</table>
 </div>
+
 <?php $this->start('script_own')?>
 <script>
 $(document).ready(function(){
-	$("#table_records").dataTable({
 
+	$("#table_records").DataTable({
+		searchDelay: 400,
+        serverSide: true,
+		ajax: {
+		    "url": "/Record/data",
+		    "dataSrc": "data"
+		},
+		columns: [
+            { "data": "Record.id" },
+            { "data": "Record.name" }
+        ],
+        autoWidth: false,
+	    lengthChange: true,
+	    ordering: true,
+		info: false,
+        lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        pageLength: 10,
 	});
+
 })
 </script>
 <?php $this->end()?>

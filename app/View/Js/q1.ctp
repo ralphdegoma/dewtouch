@@ -18,32 +18,57 @@ Question: Advanced Input Field</div>
 
 
 <div class="alert alert-success">
-<button class="close" data-dismiss="alert"></button>
-The table you start with</div>
+	<button class="close" data-dismiss="alert"></button>
+	The table you start with
+</div>
 
-<table class="table table-striped table-bordered table-hover">
-<thead>
-<th><span id="add_item_button" class="btn mini green addbutton" onclick="addToObj=false">
-											<i class="icon-plus"></i></span></th>
-<th>Description</th>
-<th>Quantity</th>
-<th>Unit Price</th>
-</thead>
+<table class="table table-striped table-bordered table-hover" id="js-table">
+	<thead>
+		<th>
+			<span id="add_item_button" class="btn mini green addbutton" onclick="addToObj=false">
+				<i class="icon-plus"></i>
+			</span>
+		</th>
+
+		<th>Description</th>
+		<th>Quantity</th>
+		<th>Unit Price</th>
+	</thead>
 
 <tbody>
-	<tr>
-	<td></td>
-	<td><textarea name="data[1][description]" class="m-wrap  description required" rows="2" ></textarea></td>
-	<td><input name="data[1][quantity]" class=""></td>
-	<td><input name="data[1][unit_price]"  class=""></td>
-	
-</tr>
+	<tr class="js-row">
+		<td></td>
+		<td>
+			<span></span>
+			<textarea name="data[][description]" class="m-wrap  description-el required hidden" rows="2" ></textarea>
+		</td>
+		<td>
+			<span></span>
+			<input name="data[][quantity]" class="quantity-el hidden">
+		</td>
+		<td>
+			<span></span>
+			<input name="data[][unit_price]"  class="unit_price-el hidden">
+		</td>
+	</tr>
 
 </tbody>
 
 </table>
 
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- unrelated -->
 <p></p>
 <div class="alert alert-info ">
 <button class="close" data-dismiss="alert"></button>
@@ -65,12 +90,11 @@ Your browser does not support the video tag.
 $(document).ready(function(){
 
 	$("#add_item_button").click(function(){
+		var base_tr = $(".js-row").clone();
 
-
-		alert("suppose to add a new row");
-		
-
-		});
+		$("#js-table tbody").append(base_tr[0]);
+		console.log()
+	});
 
 	
 });
